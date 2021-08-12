@@ -36,7 +36,7 @@ namespace Todo
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Todo", Version = "v1" });
             });
-            services.AddScoped<ITodoRepo, MockTodoRepo>();
+            services.AddScoped<ITodoRepo, SqlTodoRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
