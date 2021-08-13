@@ -9,6 +9,8 @@ namespace Todo.Profiles
         public ItemsProfile()
         {
             CreateMap<Item, ItemReadDto>();
+            CreateMap<ItemCreateDto, Item>();
+
         }
     }
 }

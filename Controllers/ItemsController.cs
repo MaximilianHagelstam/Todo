@@ -29,7 +29,7 @@ namespace Todo.Controllers
             return Ok(_mapper.Map<IEnumerable<ItemReadDto>>(todoItems));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetItemById")]
         public ActionResult<ItemReadDto> GetItemById(int id)
         {
             var todoItem = _repository.GetItemById(id);
@@ -41,6 +41,18 @@ namespace Todo.Controllers
 
             return NotFound();
 
+        }
+
+        [HttpPost]
+        public ActionResult<ItemReadDto> CreateItem(ItemCreateDto itemCreateDto)
+        {
+            var itemModel = _mapper.Map<Item>(itemCreateDto);
+            _repository.CreateItem(itemModel);
+            _repository.SaveChanges();
+
+            var ItemReadDto = _mapper.Map<ItemReadDto>(itemModel);
+
+            return CreatedAtRoute(nameof(GetItemById), new { Id = ItemReadDto.Id }, ItemReadDto);
         }
     }
 }

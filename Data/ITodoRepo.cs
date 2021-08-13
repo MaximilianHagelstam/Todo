@@ -5,7 +5,9 @@ namespace Todo.Data
 {
     public interface ITodoRepo
     {
+        bool SaveChanges();
         IEnumerable<Item> GetAllItems();
         Item GetItemById(int id);
+        void CreateItem(Item item);
     }
 }

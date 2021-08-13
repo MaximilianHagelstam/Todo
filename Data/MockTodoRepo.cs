@@ -5,6 +5,11 @@ namespace Todo.Data
 {
     public class MockTodoRepo : ITodoRepo
     {
+        public void CreateItem(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<Item> GetAllItems()
         {
             var items = new List<Item>
@@ -19,6 +24,11 @@ namespace Todo.Data
         public Item GetItemById(int id)
         {
             return new Item { Id = 0, Title = "Make bread", Description = "Deez" };
+        }
+
+        public bool SaveChanges()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
