@@ -32,10 +32,14 @@ namespace Todo
                 (Configuration.GetConnectionString("TodoConnection")));
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Todo", Version = "v1" });
             });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<ITodoRepo, SqlTodoRepo>();
         }
 

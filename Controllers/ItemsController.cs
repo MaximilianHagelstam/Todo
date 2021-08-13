@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Todo.Data;
+using Todo.Dtos;
 using Todo.Models;
 
 namespace Todo.Controllers
@@ -11,26 +13,34 @@ namespace Todo.Controllers
     public class ItemsController : ControllerBase
     {
         private readonly ITodoRepo _repository;
+        private readonly IMapper _mapper;
 
-        public ItemsController(ITodoRepo repository)
+        public ItemsController(ITodoRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Item>> GetAllItems()
+        public ActionResult<IEnumerable<ItemReadDto>> GetAllItems()
         {
             var todoItems = _repository.GetAllItems();
 
-            return Ok(todoItems);
+            return Ok(_mapper.Map<IEnumerable<ItemReadDto>>(todoItems));
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Item> GetItemById(int id)
+        public ActionResult<ItemReadDto> GetItemById(int id)
         {
             var todoItem = _repository.GetItemById(id);
 
-            return Ok(todoItem);
+            if (todoItem != null)
+            {
+                return Ok(_mapper.Map<ItemReadDto>(todoItem));
+            }
+
+            return NotFound();
+
         }
     }
 }
