@@ -39,5 +39,10 @@ namespace Todo.Data
         {
             return (_context.SaveChanges()) > 0;
         }
+
+        public void UpdateItem(Item item)
+        {
+            // Nada
+        }
     }
 }

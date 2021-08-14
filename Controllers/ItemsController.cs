@@ -54,5 +54,24 @@ namespace Todo.Controllers
 
             return CreatedAtRoute(nameof(GetItemById), new { Id = ItemReadDto.Id }, ItemReadDto);
         }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateItem(int id, ItemUpdateDto itemUpdateDto)
+        {
+            var itemModelFromRepo = _repository.GetItemById(id);
+
+            if (itemModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(itemUpdateDto, itemModelFromRepo);
+
+            _repository.UpdateItem(itemModelFromRepo);
+
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

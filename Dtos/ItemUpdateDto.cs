@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Todo.Dtos
 {
-    public class ItemReadDto
+    public class ItemUpdateDto
     {
-        public int Id { get; set; }
-
+        [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Description { get; set; }
     }
 }

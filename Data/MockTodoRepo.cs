@@ -30,5 +30,10 @@ namespace Todo.Data
         {
             throw new System.NotImplementedException();
         }
+
+        public void UpdateItem(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
