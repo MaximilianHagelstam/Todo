@@ -10,6 +10,11 @@ namespace Todo.Data
             throw new System.NotImplementedException();
         }
 
+        public void DeleteItem(Item item)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<Item> GetAllItems()
         {
             var items = new List<Item>

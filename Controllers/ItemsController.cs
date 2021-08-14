@@ -102,5 +102,22 @@ namespace Todo.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult RemoveItem(int id)
+        {
+            var itemModelFromRepo = _repository.GetItemById(id);
+
+            if (itemModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteItem(itemModelFromRepo);
+
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

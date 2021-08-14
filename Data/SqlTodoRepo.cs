@@ -25,6 +25,16 @@ namespace Todo.Data
             _context.Items.Add(item);
         }
 
+        public void DeleteItem(Item item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            _context.Items.Remove(item);
+        }
+
         public IEnumerable<Item> GetAllItems()
         {
             return _context.Items.ToList();

@@ -10,5 +10,6 @@ namespace Todo.Data
         Item GetItemById(int id);
         void CreateItem(Item item);
         void UpdateItem(Item item);
+        void DeleteItem(Item item);
     }
 }
