@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Todo.Data;
+using Newtonsoft.Json.Serialization;
 
 namespace Todo
 {
@@ -31,7 +32,10 @@ namespace Todo
             services.AddDbContext<TodoContext>(opt => opt.UseSqlServer
                 (Configuration.GetConnectionString("TodoConnection")));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s =>
+            {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
 
             services.AddSwaggerGen(c =>
             {
