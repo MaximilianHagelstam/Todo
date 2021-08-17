@@ -11,5 +11,6 @@ namespace Todo.Data
         }
 
         public DbSet<Item> Items { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }

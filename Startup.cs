@@ -45,6 +45,7 @@ namespace Todo
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<ITodoRepo, SqlTodoRepo>();
+            services.AddScoped<IBookRepo, SqlBookRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
